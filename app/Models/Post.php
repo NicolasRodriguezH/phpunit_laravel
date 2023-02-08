@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    // Muttators
+    // Muttators, funcion que provee directamente el framework
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = strtolower($value);   
@@ -18,5 +18,10 @@ class Post extends Model
     // Accessors
     public function getSlugAttribute() {
         return str_replace(' ', '-', $this->name);
+    }
+
+    // Metodo personalizado/propio
+    public function href() {
+        return "blog/{$this->slug}";
     }
 }
